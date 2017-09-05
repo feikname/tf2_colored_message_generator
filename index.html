@@ -1,27 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tf2_colored_message_generator - v0.1.0 #002</title>
+	<title>tf2_colored_message_generator - v0.1.0 (#003)</title>
 	<style>
 		body, html {
-			max-width: 20cm;
+			width: 800px;
 			padding: 5px;
 			margin-left: auto;
 			margin-right: auto;
 			background-color: #d0d0d0;
+			font-family: Arial, Helvetica, sans-serif;
 		}
 		body {
 			background-color: #dfdfdf;
 		}
+		#editor {
+			border: 1px solid black;
+			outline: none;
+			padding: 5px;
+			font-family: "Lucida Console", Monaco, monospace;
+			font-size: small;
+		}
+		#editor:focus {
+			border: 1px solid royalblue;
+			outline: none;
+		}
+		#set-selection-color-btns-div {
+			background-color: white;
+			padding: 5px;
+		}
+		#set-selection-color-btns-div > input {
+			width: calc(calc(100% / 11) - calc(46px / 11));
+		}
+		p {
+			margin-bottom: 0;
+		}
+		#btn-set-selection-to-black-color    { background-color: #000000; color: white; }
+		#btn-set-selection-to-lilac-color    { background-color: #9400D3; color: white; }
+		#btn-set-selection-to-purple-color   { background-color: #4B0082; color: white; }
+		#btn-set-selection-to-blue-color     { background-color: #0000FF; color: white; }
+		#btn-set-selection-to-green-color    { background-color: #00FF00; color: darkgreen; }
+		#btn-set-selection-to-yellow-color   { background-color: #FFFF00; color: black; }
+		#btn-set-selection-to-orange-color   { background-color: #FF7F00; color: black; }
+		#btn-set-selection-to-red-color      { background-color: #FF0000; color: black; }
+		#btn-set-selection-to-pink-color     { background-color: #FF1493; color: black; }
+		#btn-set-selection-to-white-color    { background-color: #FFFFFF; color: black; }
 	</style>
 </head>
 <body>
-	<h1>tf2_colored_message_generator - v0.1.0 #002</h1>
+	<h1>tf2_colored_message_generator - v0.1.0 (#003)</h1>
 	<hr>
 
-	Nothing here yet...
+	<div contenteditable id="editor">
+		<div id="source_text">Create your colored text here.</div>
+	</div>
 
-	<p>Made by <b>Wait, what?</b>/<b>feikname</b>. Aug 07, 2017. - ????</p>
+	<p>Set the selection to:</p>
+	<div id="set-selection-color-btns-div">
+		<input type="submit" value="Default" id="btn-set-selection-to-default-color">
+		<input type="submit" value="Black"   id="btn-set-selection-to-black-color"  >
+		<input type="submit" value="Lilac"   id="btn-set-selection-to-lilac-color"  >
+		<input type="submit" value="Purple"  id="btn-set-selection-to-purple-color" >
+		<input type="submit" value="Blue"    id="btn-set-selection-to-blue-color"   >
+		<input type="submit" value="Green"   id="btn-set-selection-to-green-color"  >
+		<input type="submit" value="Yellow"  id="btn-set-selection-to-yellow-color" >
+		<input type="submit" value="Orange"  id="btn-set-selection-to-orange-color" >
+		<input type="submit" value="Red"     id="btn-set-selection-to-red-color"    >
+		<input type="submit" value="Pink"    id="btn-set-selection-to-pink-color"   >
+		<input type="submit" value="White"   id="btn-set-selection-to-white-color"  >
+	</div>
+
+	<p>Made by <b>Wait, what?</b>/<b>feikname</b>.Sep. 05, 2017.</p>
 
 	<script>
 		// Set the predefined colors
@@ -36,6 +85,12 @@
 		predefined_colors.red    = "FF0000"
 		predefined_colors.pink   = "FF1493"
 		predefined_colors.white  = "FFFFFF"
+
+		window.addEventListener("load", function() {
+			// Set focus to the editor on page load.
+			// TODO: Move caret to the end of the line on start
+			document.getElementById("editor").focus();
+		})
 	</script>
 </body>
 </html>
