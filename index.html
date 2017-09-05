@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tf2_colored_message_generator - v0.1.0 (#004)</title>
+	<title>tf2_colored_message_generator - v0.1.0 (#005)</title>
 	<style>
 		body, html {
 			width: 800px;
@@ -58,11 +58,11 @@
 		.red-color      { color: #FF0000; text-shadow: 1px 1px white;                             }
 		.pink-color     { color: #FF1493; text-shadow: 1px 1px white;                             }
 		.white-color    { color: #FFFFFF; text-shadow: 1px 1px black;                             }
-		#input_text { width: calc(100% - 48px) }
+		#input_text { width: calc(100% - 45px) }
 	</style>
 </head>
 <body>
-	<h1>tf2_colored_message_generator - v0.1.0 (#004)</h1>
+	<h1>tf2_colored_message_generator - v0.1.0 (#005)</h1>
 	<hr>
 
 	1. Set your text:<br>
@@ -100,9 +100,10 @@
 		<br>
 
 	3. Generate the TF2 'sm_me' command<br>
-		<br>This part has not been made yet!
+		<input type="text" id="sm_me" disabled style="width: calc(100% - 5px)">
+		<input type="submit" value="Generate sm_me command" id="sm_me_generator_btn">
 
-	<hr style="margin-bottom: 0;padding-bottom: 0'">
+	<hr style="margin-bottom: 0;padding-bottom: 0;">
 	<p>Made by <b>Wait, what?</b> - September 05, 2017.</p>
 
 	<script>
@@ -206,6 +207,50 @@
 		document.getElementById("btn-set-selection-to-white-color").onclick   = function() {
 			turnCurrentSelectionInto("white-color");
 		}
+
+		// Create "sm_me_generator_btn" button event listener
+		document.getElementById("sm_me_generator_btn").addEventListener("click", function() {
+			var generatedText = "sm_me FFFFFF: ";
+			var previousColor = "default-color";
+			for(var i=0; i<current_text.length; i++) {
+				var _char = document.getElementById(i).innerHTML;
+				var color = document.getElementById(i).className;
+
+				if(color != previousColor) {
+					var colorHexCode = "ERRROR";
+					if(color == "default-color") {
+						generatedText +="";
+					} else if(color == "black-color") {
+						generatedText +="" + predefined_colors.black;
+					} else if(color == "lilac-color") {
+						generatedText +="" + predefined_colors.lilac;
+					} else if(color == "purple-color") {
+						generatedText +="" + predefined_colors.purple;
+					} else if(color == "blue-color") {
+						generatedText +="" + predefined_colors.blue;
+					} else if(color == "green-color") {
+						generatedText +="" + predefined_colors.green;
+					} else if(color == "yellow-color") {
+						generatedText +="" + predefined_colors.yellow;
+					} else if(color == "orange-color") {
+						generatedText +="" + predefined_colors.orange;
+					} else if(color == "red-color") {
+						generatedText +="" + predefined_colors.red;
+					} else if(color == "pink-color") {
+						generatedText +="" + predefined_colors.pink;
+					}  else if(color == "white-color") {
+						generatedText +="" + predefined_colors.white;
+					}
+				}
+
+				generatedText+=_char;
+
+				previousColor = color;
+			}
+			generatedText += "";
+
+			document.getElementById("sm_me").value=generatedText;
+		});
 	</script>
 </body>
 </html>
