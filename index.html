@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tf2_colored_message_generator - v0.1.0 (#005)</title>
+	<title>tf2_colored_message_generator - v0.1.0 (#006)</title>
 	<style>
 		body, html {
 			width: 800px;
@@ -62,7 +62,7 @@
 	</style>
 </head>
 <body>
-	<h1>tf2_colored_message_generator - v0.1.0 (#005)</h1>
+	<h1>tf2_colored_message_generator - v0.1.0 (#006)</h1>
 	<hr>
 
 	1. Set your text:<br>
@@ -210,42 +210,52 @@
 
 		// Create "sm_me_generator_btn" button event listener
 		document.getElementById("sm_me_generator_btn").addEventListener("click", function() {
+			if(current_text.length == 0) {
+				return;
+			}
+
 			var generatedText = "sm_me FFFFFF: ";
 			var previousColor = "default-color";
 			for(var i=0; i<current_text.length; i++) {
 				var _char = document.getElementById(i).innerHTML;
 				var color = document.getElementById(i).className;
 
+				if(_char == " ") {
+					generatedText+=" ";
+					continue;
+				}
+
 				if(color != previousColor) {
 					var colorHexCode = "ERRROR";
 					if(color == "default-color") {
 						generatedText +="";
 					} else if(color == "black-color") {
-						generatedText +="" + predefined_colors.black;
+						generatedText +="" + predefined_colors.black;
 					} else if(color == "lilac-color") {
-						generatedText +="" + predefined_colors.lilac;
+						generatedText +="" + predefined_colors.lilac;
 					} else if(color == "purple-color") {
-						generatedText +="" + predefined_colors.purple;
+						generatedText +="" + predefined_colors.purple;
 					} else if(color == "blue-color") {
-						generatedText +="" + predefined_colors.blue;
+						generatedText +="" + predefined_colors.blue;
 					} else if(color == "green-color") {
-						generatedText +="" + predefined_colors.green;
+						generatedText +="" + predefined_colors.green;
 					} else if(color == "yellow-color") {
-						generatedText +="" + predefined_colors.yellow;
+						generatedText +="" + predefined_colors.yellow;
 					} else if(color == "orange-color") {
-						generatedText +="" + predefined_colors.orange;
+						generatedText +="" + predefined_colors.orange;
 					} else if(color == "red-color") {
-						generatedText +="" + predefined_colors.red;
+						generatedText +="" + predefined_colors.red;
 					} else if(color == "pink-color") {
-						generatedText +="" + predefined_colors.pink;
+						generatedText +="" + predefined_colors.pink;
 					}  else if(color == "white-color") {
-						generatedText +="" + predefined_colors.white;
+						generatedText +="" + predefined_colors.white;
 					}
 				}
 
 				generatedText+=_char;
 
 				previousColor = color;
+
 			}
 			generatedText += "";
 
