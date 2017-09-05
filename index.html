@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tf2_colored_message_generator - v0.1.0 (#003)</title>
+	<title>tf2_colored_message_generator - v0.1.0 (#004)</title>
 	<style>
 		body, html {
 			width: 800px;
@@ -21,76 +21,191 @@
 			font-family: "Lucida Console", Monaco, monospace;
 			font-size: small;
 		}
-		#editor:focus {
-			border: 1px solid royalblue;
-			outline: none;
-		}
 		#set-selection-color-btns-div {
 			background-color: white;
 			padding: 5px;
 		}
 		#set-selection-color-btns-div > input {
-			width: calc(calc(100% / 11) - calc(46px / 11));
+			width: calc(calc(100% / 11) - calc(45px / 11));
+		}
+		#set-selection-color-btns-div > div {
+			display: inline-block;
+			text-align: center;
+			margin-top: 5px;
+			width: calc(calc(100% / 11) - calc(45px / 11));
 		}
 		p {
 			margin-bottom: 0;
 		}
-		#btn-set-selection-to-black-color    { background-color: #000000; color: white; }
-		#btn-set-selection-to-lilac-color    { background-color: #9400D3; color: white; }
-		#btn-set-selection-to-purple-color   { background-color: #4B0082; color: white; }
-		#btn-set-selection-to-blue-color     { background-color: #0000FF; color: white; }
+		#btn-set-selection-to-black-color    { background-color: #000000; color: white;     }
+		#btn-set-selection-to-lilac-color    { background-color: #9400D3; color: white;     }
+		#btn-set-selection-to-purple-color   { background-color: #4B0082; color: white;     }
+		#btn-set-selection-to-blue-color     { background-color: #0000FF; color: white;     }
 		#btn-set-selection-to-green-color    { background-color: #00FF00; color: darkgreen; }
-		#btn-set-selection-to-yellow-color   { background-color: #FFFF00; color: black; }
-		#btn-set-selection-to-orange-color   { background-color: #FF7F00; color: black; }
-		#btn-set-selection-to-red-color      { background-color: #FF0000; color: black; }
-		#btn-set-selection-to-pink-color     { background-color: #FF1493; color: black; }
-		#btn-set-selection-to-white-color    { background-color: #FFFFFF; color: black; }
+		#btn-set-selection-to-yellow-color   { background-color: #FFFF00; color: black;     }
+		#btn-set-selection-to-orange-color   { background-color: #FF7F00; color: black;     }
+		#btn-set-selection-to-red-color      { background-color: #FF0000; color: black;     }
+		#btn-set-selection-to-pink-color     { background-color: #FF1493; color: black;     }
+		#btn-set-selection-to-white-color    { background-color: #FFFFFF; color: black;     }
+		.default-color  { color: #000000; text-shadow: 1px 1px white; text-decoration: none;      }
+		.black-color    { color: #000000; text-shadow: 1px 1px white; text-decoration: underline; }
+		.lilac-color    { color: #9400D3; text-shadow: 1px 1px white;                             }
+		.purple-color   { color: #4B0082; text-shadow: 1px 1px white;                             }
+		.blue-color     { color: #0000FF; text-shadow: 1px 1px white;                             }
+		.green-color    { color: #00FF00; text-shadow: 1px 1px black;                             }
+		.yellow-color   { color: #FFFF00; text-shadow: 1px 1px black;                             }
+		.orange-color   { color: #FF7F00; text-shadow: 1px 1px white;                             }
+		.red-color      { color: #FF0000; text-shadow: 1px 1px white;                             }
+		.pink-color     { color: #FF1493; text-shadow: 1px 1px white;                             }
+		.white-color    { color: #FFFFFF; text-shadow: 1px 1px black;                             }
+		#input_text { width: calc(100% - 48px) }
 	</style>
 </head>
 <body>
-	<h1>tf2_colored_message_generator - v0.1.0 (#003)</h1>
+	<h1>tf2_colored_message_generator - v0.1.0 (#004)</h1>
 	<hr>
 
-	<div contenteditable id="editor">
-		<div id="source_text">Create your colored text here.</div>
-	</div>
+	1. Set your text:<br>
+		<input type="text"   id="input_text"     value="Set your text here.">
+		<input type="submit" id="set_input_text" value="Set">
+		<br><br>
+	2. Colorize your text:<br>
+		<div id="editor" contenteditable onkeypress="return false;"></div>
 
-	<p>Set the selection to:</p>
-	<div id="set-selection-color-btns-div">
-		<input type="submit" value="Default" id="btn-set-selection-to-default-color">
-		<input type="submit" value="Black"   id="btn-set-selection-to-black-color"  >
-		<input type="submit" value="Lilac"   id="btn-set-selection-to-lilac-color"  >
-		<input type="submit" value="Purple"  id="btn-set-selection-to-purple-color" >
-		<input type="submit" value="Blue"    id="btn-set-selection-to-blue-color"   >
-		<input type="submit" value="Green"   id="btn-set-selection-to-green-color"  >
-		<input type="submit" value="Yellow"  id="btn-set-selection-to-yellow-color" >
-		<input type="submit" value="Orange"  id="btn-set-selection-to-orange-color" >
-		<input type="submit" value="Red"     id="btn-set-selection-to-red-color"    >
-		<input type="submit" value="Pink"    id="btn-set-selection-to-pink-color"   >
-		<input type="submit" value="White"   id="btn-set-selection-to-white-color"  >
-	</div>
+		<p>Set the selection to:</p>
+		<div id="set-selection-color-btns-div">
+			<input type="submit" value="Default" id="btn-set-selection-to-default-color">
+			<input type="submit" value="Black"   id="btn-set-selection-to-black-color"  >
+			<input type="submit" value="Lilac"   id="btn-set-selection-to-lilac-color"  >
+			<input type="submit" value="Purple"  id="btn-set-selection-to-purple-color" >
+			<input type="submit" value="Blue"    id="btn-set-selection-to-blue-color"   >
+			<input type="submit" value="Green"   id="btn-set-selection-to-green-color"  >
+			<input type="submit" value="Yellow"  id="btn-set-selection-to-yellow-color" >
+			<input type="submit" value="Orange"  id="btn-set-selection-to-orange-color" >
+			<input type="submit" value="Red"     id="btn-set-selection-to-red-color"    >
+			<input type="submit" value="Pink"    id="btn-set-selection-to-pink-color"   >
+			<input type="submit" value="White"   id="btn-set-selection-to-white-color"  ><br>
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+			<div>7</div>
+			<div>8</div>
+			<div>9</div>
+			<div>10</div>
+			<div>11</div>
+		</div>
+		<br>
 
-	<p>Made by <b>Wait, what?</b>/<b>feikname</b>.Sep. 05, 2017.</p>
+	3. Generate the TF2 'sm_me' command<br>
+		<br>This part has not been made yet!
+
+	<hr style="margin-bottom: 0;padding-bottom: 0'">
+	<p>Made by <b>Wait, what?</b> - September 05, 2017.</p>
 
 	<script>
 		// Set the predefined colors
-		predefined_colors = {}
-		predefined_colors.black  = "000000"
-		predefined_colors.lilac  = "9400D3"
-		predefined_colors.purple = "4B0082"
-		predefined_colors.blue   = "0000FF"
-		predefined_colors.green  = "00FF00"
-		predefined_colors.yellow = "FFFF00"
-		predefined_colors.orange = "FF7F00"
-		predefined_colors.red    = "FF0000"
-		predefined_colors.pink   = "FF1493"
-		predefined_colors.white  = "FFFFFF"
+		predefined_colors = {};
+		predefined_colors.black  = "000000";
+		predefined_colors.lilac  = "9400D3";
+		predefined_colors.purple = "4B0082";
+		predefined_colors.blue   = "0000FF";
+		predefined_colors.green  = "00FF00";
+		predefined_colors.yellow = "FFFF00";
+		predefined_colors.orange = "FF7F00";
+		predefined_colors.red    = "FF0000";
+		predefined_colors.pink   = "FF1493";
+		predefined_colors.white  = "FFFFFF";
 
-		window.addEventListener("load", function() {
-			// Set focus to the editor on page load.
-			// TODO: Move caret to the end of the line on start
-			document.getElementById("editor").focus();
-		})
+		// Data
+		var current_text = "";
+
+		// Function to turn a range into a color
+		function turnCurrentSelectionInto(color) {
+			var sel = window.getSelection();
+
+			// Nothing was selected
+			if(sel.anchorOffset == sel.baseOffset &&
+			   sel.anchorOffset == sel.focusOffset &&
+			   sel.focusOffset  == sel.baseOffset) {
+
+			   return;
+			}
+
+			var range = sel.getRangeAt(0);
+
+			var sel_start = parseInt(range.startContainer.parentElement.id);
+			var sel_end   = parseInt(range.endContainer.parentElement.id);
+
+			for(i=sel_start; i<(sel_end+1); i++) {
+				if(i == current_text.length) { return; }
+
+				var el = document.getElementById(i);
+				if((el.innerHTML != " ")) { // Do not apply style to whitespaces
+					el.className = color;
+				}
+			}
+
+			if(window.getSelection().empty) {
+				window.getSelection().empty();
+			} else if(window.getSelection().removeAllRanges) {
+				window.getSelection().removeAllRanges();
+			}
+
+			var editor = document.getElementById("editor");
+			editor.focus();
+		}
+
+		// Set focus to text input on page load
+		document.getElementById("input_text").focus();
+
+		// Create "set_input_text" button event listener.
+		document.getElementById("set_input_text").addEventListener("click", function() {
+			current_text = document.getElementById("input_text").value;
+
+			var newHTML = "";
+			for(var i=0; i<current_text.length; i++) {
+				newHTML += "<span id=\""+i+"\" class=\"default-color\">" + current_text[i] + "</span>"
+			}
+			document.getElementById("editor").innerHTML = newHTML;
+		});
+
+		// Create "setcolor" buttons event listeners
+		document.getElementById("btn-set-selection-to-default-color").onclick = function() {
+			turnCurrentSelectionInto("default-color");
+		}
+		document.getElementById("btn-set-selection-to-black-color").onclick   = function() {
+			turnCurrentSelectionInto("black-color");
+		}
+		document.getElementById("btn-set-selection-to-lilac-color").onclick   = function() {
+			turnCurrentSelectionInto("lilac-color");
+		}
+		document.getElementById("btn-set-selection-to-purple-color").onclick  = function() {
+			turnCurrentSelectionInto("purple-color");
+		}
+		document.getElementById("btn-set-selection-to-blue-color").onclick    = function() {
+			turnCurrentSelectionInto("blue-color");
+		}
+		document.getElementById("btn-set-selection-to-green-color").onclick   = function() {
+			turnCurrentSelectionInto("green-color");
+		}
+		document.getElementById("btn-set-selection-to-yellow-color").onclick  = function() {
+			turnCurrentSelectionInto("yellow-color");
+		}
+		document.getElementById("btn-set-selection-to-orange-color").onclick  = function() {
+			turnCurrentSelectionInto("orange-color");
+		}
+		document.getElementById("btn-set-selection-to-red-color").onclick     = function() {
+			turnCurrentSelectionInto("red-color");
+		}
+		document.getElementById("btn-set-selection-to-pink-color").onclick    = function() {
+			turnCurrentSelectionInto("pink-color");
+		}
+		document.getElementById("btn-set-selection-to-white-color").onclick   = function() {
+			turnCurrentSelectionInto("white-color");
+		}
 	</script>
 </body>
 </html>
